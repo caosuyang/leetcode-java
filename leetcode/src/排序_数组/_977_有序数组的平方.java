@@ -12,6 +12,6 @@ public class _977_有序数组的平方 {
 	 * 双指针
 	 */
     public int[] sortedSquares(int[] nums) {
-
+    	return new int[0];
     }
 }
