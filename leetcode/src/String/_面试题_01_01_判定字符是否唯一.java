@@ -22,7 +22,7 @@ public class _面试题_01_01_判定字符是否唯一 {
        // 上面的字符串是ASCII字符串还是Unicode字符串，这里假定字符集为ASCII
        if (len > 128) {
 			return false;
-		}
+	   }
        boolean[] chars = new boolean[128];
        for (int i = 0; i < len; i++) {
 			int val = astr.charAt(i);
@@ -62,6 +62,9 @@ public class _面试题_01_01_判定字符是否唯一 {
 	 */
     public static boolean isUniqueC(String astr) {
     	int len = astr.length();
+        if (len > 128) {
+ 			return false;
+ 	    }
     	for (int i = 0; i < len; i++) {
 			for (int j = i + 1; j < len - i; j++) {
 				int val1 = astr.charAt(i);
@@ -82,8 +85,12 @@ public class _面试题_01_01_判定字符是否唯一 {
      */
     public static boolean isUniqueD(String astr) {
     	char[] chars = astr.toCharArray();
+    	int len = chars.length;
+        if (len > 128) {
+        	return false;
+ 		}
     	Arrays.sort(chars);
-    	for (int i = 0; i < chars.length - 1; i++) {
+    	for (int i = 0; i < len - 1; i++) {
 			int val1 = chars[i];
 			int val2 = chars[i + 1];
 			if (val1 == val2) {
