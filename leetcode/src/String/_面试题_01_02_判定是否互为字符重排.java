@@ -1,8 +1,5 @@
 package String;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.HashMap;
 
 /**
  * https://leetcode-cn.com/problems/check-permutation-lcci/
@@ -25,11 +22,13 @@ public class _面试题_01_02_判定是否互为字符重排 {
 		}
     	Arrays.sort(chars1);
     	Arrays.sort(chars2);
-    	return chars1 == chars2;
+    	String aString = new String(chars1);
+    	String bString = new String(chars2);
+    	return aString.equals(bString);
     }
-    
+
 	/**
-	 * B.哈希表
+	 * B.数组
 	 * @param s1
 	 * @param s2
 	 * @return
@@ -43,8 +42,8 @@ public class _面试题_01_02_判定是否互为字符重排 {
     		chars[s1.charAt(i)]++;
 		}
     	for (int j = 0; j < s2.length(); j++) {
-    		chars[s1.charAt(j)]--;
-    		if (chars[s1.charAt(j)] < 0) {
+    		chars[s2.charAt(j)]--;
+    		if (chars[s2.charAt(j)] < 0) {
 				return false;
 			}
 		}
@@ -54,6 +53,14 @@ public class _面试题_01_02_判定是否互为字符重排 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		String[][] pairs = {{"apple", "papel"}, {"carrot", "tarroc"}, {"hello", "llloh"}};
+		for (String[] pair : pairs) {
+			String word1 = pair[0];
+			String word2 = pair[1];
+//			boolean anagram = CheckPermutationA(word1, word2);
+			boolean anagram = CheckPermutationB(word1, word2);
+			System.out.println(word1 + ", " + word2 + ": " + anagram);
+		}
 	}
 
 }
