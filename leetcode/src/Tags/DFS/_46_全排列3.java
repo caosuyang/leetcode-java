@@ -1,14 +1,14 @@
-package DFS;
+package Tags.DFS;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * https://leetcode-cn.com/problems/permutations-ii/
+ * https://leetcode-cn.com/problems/permutations/
  * @author csy
  *
  */
-public class _47_全排列II {
-    public List<List<Integer>> permuteUnique(int[] nums) {
+public class _46_全排列3 {
+    public List<List<Integer>> permute(int[] nums) {
         if (nums == null) return null;
         List<List<Integer>> list = new ArrayList<>();
         if (nums.length == 0) return list;
@@ -29,34 +29,15 @@ public class _47_全排列II {
 
         // 枚举这一层所有可以做出的选择
         for (int i = idx; i < nums.length; i++) {
-            // 要保证一个数字在idx位置只会出现一次
-            if (isRepeat(nums, idx, i)) continue;
             swap(nums, idx, i);
             dfs(idx + 1, nums, list);
             swap(nums, idx, i);
         }
-    }
-    private boolean isRepeat(int[] nums, int idx, int i) {
-        for (int j = idx; j < i; j++) {
-            if (nums[j] == nums[i]) return true;
-        }
-        return false;
     }
 
     private void swap(int[] nums, int i, int j) {
         int tmp = nums[i];
         nums[i] = nums[j];
         nums[j] = tmp;
-    }
-
-    public static void main(String[] args) {
-        _47_全排列II o = new _47_全排列II();
-        int[] nums = {1, 2, 3};
-        List<List<Integer>> list = o.permuteUnique(nums);
-        System.out.println(list);
-
-        nums = new int[]{1, 1, 3};
-        list = o.permuteUnique(nums);
-        System.out.println(list);
     }
 }

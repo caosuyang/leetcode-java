@@ -1,4 +1,4 @@
-package String;
+package Tags.String;
 
 /**
  * https://leetcode-cn.com/problems/string-to-url-lcci/

@@ -1,4 +1,4 @@
-package String;
+package Tags.String;
 
 public class Tester {
 

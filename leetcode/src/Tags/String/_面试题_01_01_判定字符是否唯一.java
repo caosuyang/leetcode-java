@@ -1,4 +1,4 @@
-package String;
+package Tags.String;
 
 import java.util.Arrays;
 
