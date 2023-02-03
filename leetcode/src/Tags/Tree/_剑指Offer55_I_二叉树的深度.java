@@ -6,11 +6,11 @@ import java.util.Queue;
 import common.TreeNode;
 
 /**
- * https://leetcode.cn/problems/maximum-depth-of-binary-tree/
+ * https://leetcode.cn/problems/er-cha-shu-de-shen-du-lcof/
  * @author csy
  *
  */
-public class _104_二叉树的最大深度 {
+public class _剑指Offer55_I_二叉树的深度 {
 	/**
 	 * 递归，深度优先搜索
 	 * 时间复杂度：O(n)，其中 n 为二叉树的节点个数
@@ -22,7 +22,6 @@ public class _104_二叉树的最大深度 {
     	if (root == null) {
 			return 0;
 		}
-    	
     	int leftDeep = maxDepth(root.left);
     	int rightDeep = maxDepth(root.right);
     	return Math.max(leftDeep, rightDeep) + 1;
@@ -43,14 +42,15 @@ public class _104_二叉树的最大深度 {
     	queue.offer(root);
     	int deep = 0;
     	while (!queue.isEmpty()) {
-			int size = queue.size();
+    		int size = queue.size();
 			
 			while (size-- > 0) {
 				TreeNode p = queue.poll();
-				
+				// 1.如果从queue出队的node的left不为空
 				if (p.left != null) {
 					queue.offer(p.left);
 				}
+				// 2.如果从queue出队的node的right不为空
 				if (p.right != null) {
 					queue.offer(p.right);
 				}
@@ -66,12 +66,6 @@ public class _104_二叉树的最大深度 {
  *     int val;
  *     TreeNode left;
  *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
+ *     TreeNode(int x) { val = x; }
  * }
  */
