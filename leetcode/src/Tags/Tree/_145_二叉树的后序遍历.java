@@ -30,7 +30,7 @@ public class _145_二叉树的后序遍历 {
     	return list;
     }
     
-	/** 解答错误？？？
+	/**
 	 * 迭代，栈，后序遍历，深度优先搜索
 	 * 时间复杂度：O(n)，其中 n 为二叉树的节点个数
 	 * 空间复杂度：O(n)，其中 n 为迭代过程中显式栈的开销
@@ -38,7 +38,7 @@ public class _145_二叉树的后序遍历 {
 	 * @param root
 	 * @return
 	 */
-    public List<Integer> postorderTraversal2(TreeNode root) {
+    public List<Integer> postorderTraversal1(TreeNode root) {
     	List<Integer> list = new ArrayList<>();
     	if (root == null) {
 			return list;
@@ -52,8 +52,10 @@ public class _145_二叉树的后序遍历 {
     	while (!stack.isEmpty()) {
     		TreeNode p = stack.peek();
 			// 如果栈顶节点是叶子节点 或者 上一次访问的节点是栈顶节点的子节点
-			if ((p.left == null && p.right == null) 
-					|| (last == p.left || last == p.right)) {
+    		// 重要：last != null
+    		boolean isLeaf = p.left == null && p.right == null;
+    		boolean isChild = last != null && (last == p.left || last == p.right);
+			if (isLeaf || isChild) {
 	    		// 弹出栈顶节点 top，进行访问
 				TreeNode top = stack.pop();
 				list.add(top.val);
