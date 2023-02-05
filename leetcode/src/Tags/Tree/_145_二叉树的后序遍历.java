@@ -62,8 +62,12 @@ public class _145_二叉树的后序遍历 {
 				last = top;
 			} else {
 				// 否则，将栈顶节点的right、left按顺序入栈
-				stack.push(p.right);
-				stack.push(p.left);
+				if (p.right != null) {
+					stack.push(p.right);
+				}
+				if (p.left != null) {
+					stack.push(p.left);
+				}
 			}
 		}
     	return list;

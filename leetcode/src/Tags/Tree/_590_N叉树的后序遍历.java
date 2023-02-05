@@ -1,19 +1,12 @@
 package Tags.Tree;
 
-public class _590_N叉树的后序遍历 {
-
-}
-
-package Tags.Tree;
-
 import common.TreeNode;
-
 /**
  * https://leetcode.cn/problems/invert-binary-tree/
  * @author csy
  *
  */
-public class _剑指Offer55_I_二叉树的深度 {
+public class _590_N叉树的后序遍历 {
 	/**
 	 * 递归，深度优先搜索
 	 * 时间复杂度：O(n)，其中 n 为二叉树的节点个数
@@ -22,7 +15,7 @@ public class _剑指Offer55_I_二叉树的深度 {
 	 * @return
 	 */
     public int maxDepth(TreeNode root) {
-    	
+    	return 0;
     }
 }
 /**
