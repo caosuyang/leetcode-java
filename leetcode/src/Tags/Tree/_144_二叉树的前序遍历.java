@@ -53,7 +53,9 @@ public class _144_二叉树的前序遍历 {
         		// 对 node 进行访问
         		list.add(node.val);
         		// 将 node.right 入栈
-        		stack.push(node.right);
+        		if (node.right != null) {
+        			stack.push(node.right);
+				}
         		// 设置 node = node.left
         		node = node.left;
     		} 
@@ -103,6 +105,45 @@ public class _144_二叉树的前序遍历 {
 			}
 		}
     	return list;
+    }
+    
+	/**
+	 * 迭代，栈，前序遍历，深度优先搜索，优化
+	 * 时间复杂度：O(n)，其中 n 为二叉树的节点个数
+	 * 空间复杂度：O(n)，其中 n 为迭代过程中显式栈的开销
+	 * 平均情况下为 O(log⁡n)，最坏情况下树呈现链状，为 O(n)
+	 * @param root
+	 * @return
+	 */
+    public List<Integer> preorderTraversal3(TreeNode root) {
+    	List<Integer> list = new ArrayList<>();
+    	if (root == null) {
+			return list;
+		}
+    	Stack<TreeNode> stack = new Stack<>();
+    	// 1. 设置 node = root
+    	TreeNode node = root;
+    	// 2. 循环执行以下操作
+    	while (true) {
+    		// 如果 node != null
+        	if (node != null) {
+        		// 对 node 进行访问
+        		list.add(node.val);
+        		// 将 node.right 入栈
+        		if (node.right != null) {
+        			stack.push(node.right);
+				}
+        		// 设置 node = node.left
+        		node = node.left;
+    		} else if (stack.isEmpty()) { // 如果 node == null
+    			// 如果栈为空，结束遍历
+	    		return list;
+			} else {
+				// 如果栈不为空，弹出栈顶元素并赋值给 node
+                // 重要：一直pop到stack顶部是非空节点，此时note不为空，跳到while1条件
+				node = stack.pop();
+			}
+		}
     }
 }
 /**
