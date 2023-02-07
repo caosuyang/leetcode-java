@@ -1,29 +1,32 @@
 package Tags.Tree;
 
+import common.Node;
 import common.TreeNode;
 /**
- * https://leetcode.cn/problems/invert-binary-tree/
+ * https://leetcode.cn/problems/maximum-depth-of-n-ary-tree/
  * @author csy
  *
  */
+/*
+//Definition for a Node.
+class Node {
+public int val;
+public List<Node> children;
+
+public Node() {}
+
+public Node(int _val) {
+   val = _val;
+}
+
+public Node(int _val, List<Node> _children) {
+   val = _val;
+   children = _children;
+}
+};
+*/
 public class _559_N叉树的最大深度 {
-	/**
-	 * 递归，深度优先搜索
-	 * 时间复杂度：O(n)，其中 n 为二叉树的节点个数
-	 * 空间复杂度：O(height)，其中 height 表示二叉树的高度
-	 * @param root
-	 * @return
-	 */
-    public int maxDepth(TreeNode root) {
-    	return 0;
+    public int maxDepth(Node root) {
+        return 0;
     }
 }
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
