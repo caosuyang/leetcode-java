@@ -7,8 +7,7 @@ package com.csy.sort.cmp;
  */
 public class InsertionSort3 {
 	/**
-	 * 两次扫描，挪动
-	 * 优化1：将交换转为挪动
+	 * 二分搜索优化
 	 * 时间复杂度：O(n^2)
 	 * 空间复杂度：O(1)
 	 * 稳定性：稳定
@@ -22,15 +21,65 @@ public class InsertionSort3 {
 			int cur = begin;
 			// 先将待插入元素备份
 			int ele = array[cur];
+			// 待插入位置是insertIndex，也就是[insertIndex, begin) 范围年内元素都比待插入元素大
+			int insertIndex = insertIndex(array, cur);
 			// 头部有序数据中比待插入元素大的，都朝着尾部方向挪动1个位置
-			while (cur > 0 && cmp(ele, array[cur - 1]) < 0) {
-				array[cur] = array[cur - 1];
-				cur--;
+			// 也就是将 [insertIndex, begin) 范围内的元素往右边挪动一个单位
+			for (int i = begin; i > insertIndex; i--) {
+				array[i] = array[i - 1];
 			}
 			// 将待插入元素放到最终合适的位置
-			array[cur] = ele;
+			array[insertIndex] = ele;
 		}
 		return array;
+	}
+	
+	/**
+	 * 查找v在有序数组array中待插入的位置，优化条件合并
+	 * 要求二分搜索返回的插入位置：第一个大于v的元素位置
+	 * @param array
+	 * @param 
+	 * @return
+	 */
+	public int insertIndex(int[] array, int index) {
+		int begin = 0, end = index;
+		while (begin < end) {
+			int mid = (begin + end) >> 1;
+			if (cmp(array, index, mid) < 0) {
+				end = mid;
+			} else {// v >= array[mid]
+				// 插入位置是第一个大于v的元素位置
+				begin = mid + 1;
+			}
+		}
+		// v >= array[mid]时，插入位置正好为begin
+		return begin;
+	}
+	
+	
+	/**
+	 * 查找v在有序数组array中待插入的位置，优化条件合并
+	 * 要求二分搜索返回的插入位置：第一个大于v的元素位置
+	 * @param array
+	 * @param 
+	 * @return
+	 */
+	public int insertIndex1(int[] array, int v) {
+		if (array == null || array.length == 0) {
+			return -1;
+		}
+		int begin = 0, end = array.length;
+		while (begin < end) {
+			int mid = (begin + end) >> 1;
+			if (v < array[mid]) {
+				end = mid;
+			} else {// v >= array[mid]
+				// 插入位置是第一个大于v的元素位置
+				begin = mid + 1;
+			}
+		}
+		// v >= array[mid]时，插入位置正好为begin
+		return begin;
 	}
 	
 	/**
