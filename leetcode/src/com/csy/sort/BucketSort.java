@@ -12,8 +12,8 @@ import java.util.List;
 public class BucketSort {
 	/**
 	 * 空间换时间，桶数组，二维数组
-	 * 时间复杂度：O(m+n)，m是桶的数量
-	 * 空间复杂度：O(n+k)
+	 * 时间复杂度：O(n+k)
+	 * 空间复杂度：O(m+n)，m是桶的数量
 	 * 稳定性：稳定
 	 * 不属于原地算法
 	 * @param array
