@@ -3,6 +3,7 @@ package Tags.Sort;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
 
 import common.ListNode;
 
@@ -66,7 +67,29 @@ public class _23_合并K个升序链表 {
 	 * @return
 	 */
     public ListNode mergeKLists1(ListNode[] lists) {
-    	return null;
+    	if (lists == null || lists.length == 0) {
+			return null;
+		}
+    	// 虚拟头节点
+    	ListNode head = new ListNode(0);
+    	ListNode cur  = head;
+    	while (true) {
+			int minIndex = -1;
+    		for (int i = 0; i < lists.length; i++) {
+				if (lists[i] == null) {
+					continue;
+				}
+				if (minIndex == -1 || lists[i].val < lists[minIndex].val) {
+					minIndex = i;
+				}
+			}
+    		if (minIndex == -1) {
+				break;
+			}
+    		cur = cur.next = lists[minIndex];
+    		lists[minIndex] = lists[minIndex].next;
+		}
+    	return head.next;
     }
     
 	/**
@@ -77,7 +100,14 @@ public class _23_合并K个升序链表 {
 	 * @return
 	 */
     public ListNode mergeKLists2(ListNode[] lists) {
-    	return null;
+    	if (lists == null || lists.length == 0) {
+			return null;
+		}
+    	// 注意：i从1开始遍历
+    	for (int i = 1; i < lists.length; i++) {
+			lists[0] = mergeTwoLists(lists[0], lists[i]);
+		}
+    	return lists[0];
     }
     
 	/**
@@ -131,7 +161,29 @@ public class _23_合并K个升序链表 {
 	 * @return
 	 */
     public ListNode mergeKLists3(ListNode[] lists) {
-    	return null;
+    	if (lists == null || lists.length == 0) {
+			return null;
+		}
+    	// 虚拟头节点
+    	ListNode head = new ListNode(0);
+    	ListNode cur = head;
+    	Comparator<ListNode> cmp = (ListNode node1, ListNode node2) -> {
+    		return node1.val - node2.val;
+    	};
+    	// 初始化一个优先级队列，从小到大排序
+    	PriorityQueue<ListNode> queue = new PriorityQueue<>(cmp);
+    	for (ListNode list : lists) {
+			if (list == null) continue;
+			queue.offer(list);
+		}
+    	while (!queue.isEmpty()) {
+			ListNode p = queue.poll();
+			if (p.next != null) {
+				queue.offer(p.next);
+			}
+			cur = cur.next = p;
+		}
+    	return head.next;
     }
     
 	/**
@@ -142,6 +194,17 @@ public class _23_合并K个升序链表 {
 	 * @return
 	 */
     public ListNode mergeKLists4(ListNode[] lists) {
-    	return null;
+    	if (lists == null || lists.length == 0) {
+			return null;
+		}
+    	int step = 1;
+    	while (step < lists.length) {
+			int nextStep = step << 1;
+			for (int i = 0; i + step < lists.length; i += nextStep) {
+				lists[i] = mergeTwoLists(lists[i], lists[i + step]);
+			}
+			step = nextStep;
+		}
+    	return lists[0];
     }
 }
