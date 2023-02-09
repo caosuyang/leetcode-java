@@ -11,7 +11,7 @@ public class MergeSort {
 	 * 时间复杂度：O(nlogn)
 	 * 空间复杂度：O(n)
 	 * 稳定性：稳定
-	 * 属于原地算法
+	 * 不属于原地算法
 	 * @param array
 	 * @return
 	 */
