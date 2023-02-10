@@ -5,11 +5,11 @@ package Recursion;
  * @author myfolders
  *
  */
-public class _509_斐波那契数2 {
+public class _509_斐波那契数4 {
 	/**
-	 * 数组
+	 * 滚动数组
 	 * 时间复杂度 n
-	 * 空间复杂度 n
+	 * 空间复杂度 1
 	 * @param n
 	 * @return
 	 */
@@ -17,17 +17,13 @@ public class _509_斐波那契数2 {
     	if (n < 2) {
 			return n;
 		}
-    	int[] array = new int[n + 1];
-    	array[1] = array[2] = 1;
-    	return fib(array, n);
-    }
-    
-    public int fib(int[] array, int n) {
-		if (array[n] == 0) {
-			array[n] = fib(array, n - 1) + fib(array, n - 2);
+    	int[] array = new int[2];
+    	array[0] = array[1] = 1;
+    	for (int i = 3; i <= n; i++) {
+    		array[i % 2] = array[(i - 1) % 2] + array[(i - 2) % 2];
 		}
-		return array[n];
-	}
+    	return array[n % 2];
+    }
 
     /**
      * test
@@ -36,7 +32,7 @@ public class _509_斐波那契数2 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		_509_斐波那契数2 fib = new _509_斐波那契数2();
+		_509_斐波那契数4 fib = new _509_斐波那契数4();
 		int f1 = fib.fib(0);
 		int f2 = fib.fib(1);
 		int f3 = fib.fib(2);
