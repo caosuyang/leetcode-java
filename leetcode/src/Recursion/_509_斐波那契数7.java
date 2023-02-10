@@ -8,13 +8,14 @@ package Recursion;
 public class _509_斐波那契数7 {
 	/**
 	 * 线性代数，特征方程
-	 * 时间复杂度 logn
-	 * 空间复杂度 1
+	 * 时间复杂度 取决于pow，至少可以低到 logn
+	 * 空间复杂度 取决于pow
 	 * @param n
 	 * @return
 	 */
     public int fib(int n) {
-    	return 0;
+    	double c = Math.sqrt(5);
+    	return (int) ((Math.pow((1 + c) / 2, n) - Math.pow((1 - c) / 2, n)) / c);
     }
 
     /**

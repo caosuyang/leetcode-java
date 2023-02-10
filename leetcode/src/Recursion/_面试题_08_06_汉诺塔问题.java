@@ -41,7 +41,7 @@ public class _面试题_08_06_汉诺塔问题 {
     
     /**
      * 将最顶部元素从from移动到to
-     * 此处处理元素挪动
+     * 注意：此处处理元素挪动，index应该是 from.size() - 1，而不是 n 圆盘个数
      * @param n
      * @param A
      * @param C

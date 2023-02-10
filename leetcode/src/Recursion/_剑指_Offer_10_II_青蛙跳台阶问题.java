@@ -7,18 +7,39 @@ package Recursion;
  */
 public class _剑指_Offer_10_II_青蛙跳台阶问题 {
 
+//	/**
+//	 * 递归，超时，需要优化
+//	 * 时间复杂度 2^n
+//	 * 空间复杂度 n
+//	 * @param n
+//	 * @return
+//	 */
+//    public int numWays(int n) {
+//    	if (n == 0) {
+//			return 1;
+//		} else if (n < 3) {
+//			return n;
+//		}
+//    	return numWays(n - 2) + numWays(n - 1);
+//    }
+	
 	/**
-	 * 递归
-	 * 时间复杂度 n^2
+	 * 递归，尾递归
+	 * (first + second) % 1000_000_007，大数越界处理
+	 * 时间复杂度 2^n
 	 * 空间复杂度 n
 	 * @param n
 	 * @return
 	 */
     public int numWays(int n) {
-    	if (n <= 2) {
-			return n;
+    	return numWays(n, 1, 2);
+    }
+    
+    public int numWays(int n, int first, int second) {
+    	if (n < 2) {
+			return first;
 		}
-    	return numWays(n - 2) + numWays(n - 1);
+    	return numWays(n - 1, second, (first + second) % 1000_000_007);
     }
     
 	public static void main(String[] args) {

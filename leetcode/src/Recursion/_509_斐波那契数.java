@@ -8,7 +8,7 @@ package Recursion;
 public class _509_斐波那契数 {
 	/**
 	 * 递归
-	 * 时间复杂度 n^2
+	 * 时间复杂度 2^n
 	 * 空间复杂度 n
 	 * @param n
 	 * @return

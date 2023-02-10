@@ -6,19 +6,44 @@ package Recursion;
  *
  */
 public class _70_爬楼梯 {
+//	/**
+//	 * 递归，超时，需要优化
+//	 * 时间复杂度 2^n
+//	 * 空间复杂度 n
+//	 * @param n
+//	 * @return
+//	 */
+//    public int climbStairs(int n) {
+//    	if (n < 3) {
+//			return n;
+//		}
+//    	return climbStairs(n - 1) + climbStairs(n - 2);
+//    }
+	
 	/**
-	 * 递归
-	 * 时间复杂度 n^2
+	 * 递归，尾递归
+	 * 时间复杂度 2^n
 	 * 空间复杂度 n
 	 * @param n
 	 * @return
 	 */
     public int climbStairs(int n) {
-    	if (n < 3) {
-			return n;
-		}
-    	return climbStairs(n - 1) + climbStairs(n - 2);
+    	return climbStairs(n, 1, 2);
     }
+    
+    /**
+     * 尾调用优化
+     * @param n
+     * @param first
+     * @param second
+     * @return
+     */
+    public int climbStairs(int n, int first, int second) {
+		if (n < 2) {
+			return first;
+		}
+		return climbStairs(n - 1, second, first + second);
+	}
 
     /**
      * test
