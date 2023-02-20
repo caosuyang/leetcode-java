@@ -19,23 +19,21 @@ import java.util.Arrays;
 public class 练习1_最优装载问题_加勒比海盗 {
 	
 	/**
-	 * 
+	 * 贪心策略：每一次都优先选择重量最小的古董
 	 * @param capacity
 	 * @param weights
-	 * @return
+	 * @return 尽可能多数量
 	 */
 	public int maxCount(int capacity, int[] weights) {
 		int count = 0, weight = 0;
 		// 排序后从小到大排列
 		Arrays.sort(weights);
 		
-		while (weight < capacity) {
-			for (int i = 0; i < weights.length; i++) {
-				int newWeight = weight + weights[i];
-				if (newWeight < capacity) {
-					weight = newWeight;
-					count++;
-				}
+		for (int i = 0; i < weights.length && weight < capacity; i++) {
+			int newWeight = weight + weights[i];
+			if (newWeight <= capacity) {
+				weight = newWeight;
+				count++;
 			}
 		}
 		
@@ -43,32 +41,32 @@ public class 练习1_最优装载问题_加勒比海盗 {
 	}
 	
 	/**
-	 * 
+	 * 贪心策略：每一次都优先选择重量最小的古董
 	 * @param capacity
 	 * @param weights
-	 * @return
+	 * @return 最多能装载的古董
 	 */
 	public int[] newWeights(int capacity, int[] weights) {
-		int count = 0, weight = 0;
+		int weight = 0;
 		// 排序后从小到大排列
 		Arrays.sort(weights);
 		int[] newWeights = new int[weights.length];
 		int index = 0;
-		while (weight < capacity) {
-			for (int i = 0; i < weights.length; i++) {
-				int newWeight = weight + weights[i];
-				if (newWeight < capacity) {
-					weight = newWeight;
-					count++;
-					newWeights[index] = weight;
-					index++;
-				}
+		for (int i = 0; i < weights.length && weight < capacity; i++) {
+			int curWeight = weights[i];
+			int newWeight = weight + curWeight;
+			if (newWeight <= capacity) {
+				newWeights[index++] = curWeight;
+				weight = newWeight;
 			}
 		}
-		
 		return newWeights;
 	}
 
+	/**
+	 * test
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int capacity = 30;
@@ -77,9 +75,12 @@ public class 练习1_最优装载问题_加勒比海盗 {
 		int count = mc.maxCount(capacity, weights);
 		System.out.println(count);
 		
+		System.out.println("======================");
 		int[] newWeights = mc.newWeights(capacity, weights);
 		for (int i : newWeights) {
-			System.out.println(i);
+			if (i > 0 ) {
+				System.out.println(i);
+			}
 		}
 	}
 }
