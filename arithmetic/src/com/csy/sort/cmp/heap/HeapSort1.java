@@ -100,7 +100,7 @@ public class HeapSort1 {
      * 1 <= nums.length <= 5 * 104
      * -5 * 104 <= nums[i] <= 5 * 104
      * @param args
-     * leetcode执行结果：12 / 20 个通过的测试用例，超出时间限制
+     * leetcode执行结果：通过
      */
     public static void main(String[] args) {
 //		int[] array = {7, 3, 5, 8, 6, 7, 4, 5};
